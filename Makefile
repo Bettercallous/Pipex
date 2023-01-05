@@ -19,8 +19,6 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-RM = rm -rf
-
 all: ${NAME}
 
 ${NAME}:
@@ -28,11 +26,11 @@ ${NAME}:
 	@echo "\033[1;33mpipex: pipex program compiled successfully!\033[0m"
 
 clean:
-	@${RM} *.o
+	@rm -rf *.o
 	@echo "\033[1;31mpipex: Removed all .o files!\033[0m"
 
 fclean: clean
-	@${RM} ${NAME}
+	@rm -rf ${NAME}
 	@echo "\033[1;31mpipex: Removed pipex program!\033[0m"
 
 re: fclean all
