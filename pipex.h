@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:55 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/04 05:59:48 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:38:03 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-int		exit_with_error(void);
+int		exit_(void);
 int		ft_strlen(const char *str);
 void	exec_cmd(char *av, char **env);
 char	**ft_split(char const *s, char c);

@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/04 06:05:47 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:38:55 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-int	exit_with_error(void)
+int	exit_(void)
 {
-	perror("Error");
+	perror("");
 	exit(1);
 }
 
@@ -91,8 +91,8 @@ void	exec_cmd(char *av, char **env)
 		while (cmd[i])
 			free(cmd[i++]);
 		free(cmd);
-		exit_with_error();
+		exit_();
 	}
 	if (execve(path, cmd, env) == -1)
-		exit_with_error();
+		exit_();
 }
