@@ -23,6 +23,8 @@ The dup2 function is often used to redirect the standard input, output, or error
 After this dup2 function call, any output written to STDOUT_FILENO (e.g., using the printf function) will be written to the same file as fd[1].
 Note that this dup2 function call assumes that fd[1] is a valid file descriptor that has been opened previously. If fd[1] is not a valid file descriptor, the dup2 function call will fail with an error.
 
+An important detail about the way dup2() works is that it will first close its second parameter, which is a file descriptor, if necessary. Thus in this example, stdin (which is open by default) is first closed, which will remove its reference to the default keyboard file. Then the stdin of the child process will be able to receive data via fds[0] instead of from the keyboard. That’s the magic of dup2()!
+
 
 // fork()
 fork returns different things to the processes :
