@@ -6,13 +6,13 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:10:01 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/08 14:48:42 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:52:28 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	parent_proc(char **av, int *end, char **env)
+void	cmd2(char **av, int *end, char **env)
 {
 	int	fd;
 
@@ -25,7 +25,7 @@ void	parent_proc(char **av, int *end, char **env)
 	exec_cmd(av[3], env);
 }
 
-void	child_proc(char **av, int *end, char **env)
+void	cmd1(char **av, int *end, char **env)
 {
 	int	fd;
 
@@ -42,12 +42,10 @@ int	main(int ac, char **av, char **env)
 {
 	int		end[2];
 	pid_t	pid;
+	pid_t	pid2;
 
 	if (ac != 5)
-	{
-		write(2, "Error: Wrong arguments\n", 24);
-		exit(1);
-	}
+		arg_err();
 	else
 	{
 		if (pipe(end) == -1)
@@ -55,10 +53,14 @@ int	main(int ac, char **av, char **env)
 		pid = fork();
 		if (pid == -1)
 			exit_();
-		if (pid == 0)
-			child_proc(av, end, env);
-		wait(NULL);
-		parent_proc(av, end, env);
+		else if (pid == 0)
+			cmd1(av, end, env);
+		pid2 = fork();
+		if (pid2 == -1)
+			exit_();
+		else if (pid2 == 0)
+			cmd2(av, end, env);
+		waitpid(-1, NULL, 0);
 	}
 	return (0);
 }

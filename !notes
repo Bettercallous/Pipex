@@ -38,11 +38,6 @@ If the fork function fails, it returns a value of -1.
 The access function returns 0 if the file is accessible according to the specified mode, or -1 if an error occurs 
 (e.g., if the file does not exist or if the caller does not have sufficient permissions).
 
-// wait()
-
-The wait function takes a single argument, a pointer to an int variable, which is used to store the exit status of the child process.
-The exit status of a child process is typically used to indicate whether the child process terminated normally or was terminated by a signal.
-
 // envp
 
 The envp argument to the main() function is automatically passed to the program by the operating system when the program is executed.

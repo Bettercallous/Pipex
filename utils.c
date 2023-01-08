@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/08 13:41:53 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:27:10 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void	arg_err(void)
+{
+	write(2, "Error: Wrong arguments\n", 24);
+	exit(1);
 }
 
 int	ft_strnstr(char *haystack, char *needle)
@@ -77,6 +83,16 @@ char	*find_path(char *cmd, char **envp)
 	return (0);
 }
 
+void	check_slash(char *av, char **cmd, char **env)
+{
+	if (av[0] == '/')
+	{
+		if (access(av, X_OK) == 0)
+			execve(av, cmd, env);
+		exit(1);
+	}
+}
+
 void	exec_cmd(char *av, char **env)
 {
 	int		i;
@@ -85,6 +101,7 @@ void	exec_cmd(char *av, char **env)
 
 	i = 0;
 	cmd = ft_split(av, ' ');
+	check_slash(cmd[0], cmd, env);
 	path = find_path(cmd[0], env);
 	if (!path)
 	{
