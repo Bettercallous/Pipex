@@ -1,0 +1,53 @@
+
+// pipe()
+
+The pipe() function takes a single argument, an array of two int values, which is used to store the file descriptor for the read end of the pipe and the file descriptor for the write end of the pipe, respectively.
+The pipe() function creates a new pipe and stores the file descriptor for the read end of the pipe in end[0] and the file descriptor for the write end of the pipe in end[1].
+The read end of the pipe is used for reading data from the pipe, and the write end is used for writing data to the pipe. Data written to the write end of the pipe can be read from the read end of the pipe in the same order that it was written. 
+
+
+// perror() :
+Use perror("Error") to debug, especially right after fork() or execve(), to see what is going on in the pipe. Inside the pipe, everything done goes to one of its ends.
+Printf for exemple won’t print to the terminal or it will print to your outfile (because we swapped the stdout); perror("Error") will work because it prints to stderr.
+
+
+// dup2()
+The dup2 function in C is used to duplicate a file descriptor. It is defined in the <unistd.h> header file and is declared as follows:
+int dup2(int oldfd, int newfd);
+The dup2 function takes two arguments:
+oldfd: the file descriptor to be duplicated.
+newfd: the file descriptor of the new copy.
+The dup2 function creates a new copy of the file descriptor oldfd and assigns it the value newfd. If newfd is already open, it is first closed.
+The dup2 function returns the new file descriptor on success, or -1 on error.
+The dup2 function is often used to redirect the standard input, output, or error streams (stdin, stdout, stderr) to a file or to a pipe. 
+After this dup2 function call, any output written to STDOUT_FILENO (e.g., using the printf function) will be written to the same file as fd[1].
+Note that this dup2 function call assumes that fd[1] is a valid file descriptor that has been opened previously. If fd[1] is not a valid file descriptor, the dup2 function call will fail with an error.
+
+
+// fork()
+fork returns different things to the processes :
+returns 0 to the child process.
+returns the PID of the child process to the parent process.
+If the fork function fails, it returns a value of -1.
+
+
+// access()
+
+The access function returns 0 if the file is accessible according to the specified mode, or -1 if an error occurs 
+(e.g., if the file does not exist or if the caller does not have sufficient permissions).
+
+// wait()
+
+The wait function takes a single argument, a pointer to an int variable, which is used to store the exit status of the child process.
+The exit status of a child process is typically used to indicate whether the child process terminated normally or was terminated by a signal.
+
+// envp
+
+The envp argument to the main() function is automatically passed to the program by the operating system when the program is executed.
+It contains the environment variables for the process, which are key-value pairs in the form name=value that can be used to pass information to the program at runtime.
+
+// execve()
+The execve function replaces the current process image with a new process image, as specified by the path argument. The new process image is constructed from a regular,
+executable file, whose name is pointed to by path. The file is invoked with the arguments specified by argv and envp.
+
+If the call to execve() is successful, it does not return to the calling process. If an error occurs, it returns -1 and sets the global variable errno to indicate the error.

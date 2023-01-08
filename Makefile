@@ -6,7 +6,7 @@
 #    By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 05:51:20 by oubelhaj          #+#    #+#              #
-#    Updated: 2023/01/05 18:25:56 by oubelhaj         ###   ########.fr        #
+#    Updated: 2023/01/07 09:40:40 by oubelhaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC = pipex.c utils.c ft_split.c ft_strjoin.c
 
 NAME = pipex
 
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 

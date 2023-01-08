@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 01:47:49 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/04 06:05:11 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:40:48 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	s1len;
-	size_t	s2len;
+	int		i;
+	int		s1len;
+	int		s2len;
 	char	*str;
 
 	i = 0;

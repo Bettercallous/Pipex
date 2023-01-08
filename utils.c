@@ -6,11 +6,17 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/05 17:38:55 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:41:53 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	exit_(void)
+{
+	perror("");
+	exit(1);
+}
 
 int	ft_strlen(const char *str)
 {
@@ -22,12 +28,6 @@ int	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int	exit_(void)
-{
-	perror("");
-	exit(1);
 }
 
 int	ft_strnstr(char *haystack, char *needle)

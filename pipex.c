@@ -6,41 +6,41 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:10:01 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/05 17:38:33 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:48:42 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	parent_proc(char **av, char **env, int *fd)
+void	parent_proc(char **av, int *end, char **env)
 {
-	int	id;
+	int	fd;
 
-	id = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (id == -1)
+	close(end[1]);
+	fd = open(av[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd == -1)
 		exit_();
-	dup2(fd[0], STDIN_FILENO);
-	dup2(id, STDOUT_FILENO);
-	close(fd[1]);
+	dup2(end[0], STDIN_FILENO);
+	dup2(fd, STDOUT_FILENO);
 	exec_cmd(av[3], env);
 }
 
-void	child_proc(char **av, char **env, int *fd)
+void	child_proc(char **av, int *end, char **env)
 {
-	int	id;
+	int	fd;
 
-	id = open(av[1], O_RDONLY);
-	if (id == -1)
+	close(end[0]);
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
 		exit_();
-	dup2(fd[1], STDOUT_FILENO);
-	dup2(id, STDIN_FILENO);
-	close(fd[0]);
+	dup2(end[1], STDOUT_FILENO);
+	dup2(fd, STDIN_FILENO);
 	exec_cmd(av[2], env);
 }
 
 int	main(int ac, char **av, char **env)
 {
-	int		fd[2];
+	int		end[2];
 	pid_t	pid;
 
 	if (ac != 5)
@@ -50,15 +50,15 @@ int	main(int ac, char **av, char **env)
 	}
 	else
 	{
-		if (pipe(fd) == -1)
+		if (pipe(end) == -1)
 			exit_();
 		pid = fork();
 		if (pid == -1)
 			exit_();
 		if (pid == 0)
-			child_proc(av, env, fd);
-		waitpid(pid, NULL, 0);
-		parent_proc(av, env, fd);
+			child_proc(av, end, env);
+		wait(NULL);
+		parent_proc(av, end, env);
 	}
 	return (0);
 }
