@@ -6,21 +6,22 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:55 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/08 19:28:07 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:15:49 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <stdlib.h>
 # include <stdio.h>
-# include <unistd.h>
 # include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include <sys/types.h>
 
 int		exit_(void);
 void    arg_err(void);
+void	check_cmds(char **av);
 int		ft_strlen(const char *str);
 void	exec_cmd(char *av, char **env);
 char	**ft_split(char const *s, char c);

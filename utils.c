@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/08 19:27:10 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:04:22 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_(void)
 {
-	perror("");
+	perror("error");
 	exit(1);
 }
 
@@ -28,6 +28,21 @@ int	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void	check_cmds(char **av)
+{
+	if (*av[2] == '\0' && *av[3] == '\0')
+	{
+		write(2, "bash: : command not found\n", 27);
+		write(2, "bash: : command not found\n", 27);
+		exit(1);
+	}
+	else if (*av[2] == '\0' || *av[3] == '\0')
+	{
+		write(2, "bash: : command not found\n", 27);
+		exit(1);
+	}
 }
 
 void	arg_err(void)
@@ -89,7 +104,7 @@ void	check_slash(char *av, char **cmd, char **env)
 	{
 		if (access(av, X_OK) == 0)
 			execve(av, cmd, env);
-		exit(1);
+		exit_();
 	}
 }
 

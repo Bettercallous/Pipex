@@ -48,3 +48,10 @@ The execve function replaces the current process image with a new process image,
 executable file, whose name is pointed to by path. The file is invoked with the arguments specified by argv and envp.
 
 If the call to execve() is successful, it does not return to the calling process. If an error occurs, it returns -1 and sets the global variable errno to indicate the error.
+
+
+q's :
+
+what is environment
+why do we have to close the unused end of the pipe
+when does a child process become a zombie
