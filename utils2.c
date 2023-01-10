@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 06:45:42 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 08:21:17 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 08:38:09 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_strlen(const char *str)
 
 int	check_path(char *av, char **envp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_strnstr(envp[i], "PATH") == 0)
@@ -57,4 +57,24 @@ void	arg_err(void)
 {
 	write(2, "Error: Wrong arguments\n", 24);
 	exit(1);
+}
+
+int	ft_strnstr(char *haystack, char *needle)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!haystack || !needle)
+		return (2);
+	while (haystack[i])
+	{
+		j = 0;
+		while ((haystack[i + j] == needle[j]) && (haystack[i + j] && needle[j]))
+			j++;
+		if (needle[j] == '\0')
+			return (1);
+		i++;
+	}
+	return (0);
 }

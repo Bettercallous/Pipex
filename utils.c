@@ -6,27 +6,39 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 08:15:23 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 08:38:28 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_strnstr(char *haystack, char *needle)
+char	**get_path_env(char **envp)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	if (!haystack || !needle)
-		return (2);
-	while (haystack[i])
+	while (ft_strnstr(envp[i], "PATH") == 0)
+		i++;
+	if (envp[i])
+		return (ft_split(envp[i] + 5, ':'));
+	return (0);
+}
+
+char	*search_paths(char *cmd, char **all_paths)
+{
+	char	*tmp;
+	char	*path;
+	int		i;
+
+	i = 0;
+	while (all_paths[i])
 	{
-		j = 0;
-		while ((haystack[i + j] == needle[j]) && (haystack[i + j] && needle[j]))
-			j++;
-		if (needle[j] == '\0')
-			return (1);
+		tmp = ft_strjoin(all_paths[i], "/");
+		path = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(path, F_OK) == 0)
+			return (path);
+		free(path);
 		i++;
 	}
 	return (0);
@@ -34,35 +46,14 @@ int	ft_strnstr(char *haystack, char *needle)
 
 char	*find_path(char *cmd, char **envp)
 {
-	int		i;
-	char	*tmp;
+	char	**all_paths;
 	char	*path;
-	char	**paths;
 
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH") == 0)
-		i++;
-	if (envp[i])
-	{
-		paths = ft_split(envp[i] + 5, ':');
-		i = 0;
-		while (paths[i])
-		{
-			tmp = ft_strjoin(paths[i], "/");
-			path = ft_strjoin(tmp, cmd);
-			free(tmp);
-			if (access(path, F_OK) == 0)
-				return (path);
-			free(path);
-			i++;
-		}
-		i = 0;
-		while (paths[i])
-			free(paths[i++]);
-		free(paths);
+	all_paths = get_path_env(envp);
+	path = search_paths(cmd, all_paths);
+	if (!path)
 		write(2, "command not found\n", 19);
-	}
-	return (0);
+	return (path);
 }
 
 void	check_slash(char *av, char **cmd, char **env)
