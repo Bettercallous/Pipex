@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:10:01 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 06:42:28 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 08:24:38 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	cmd1(char **av, int *end, char **env)
 
 void	first_process(char **av, int *end, char **env)
 {
-	if ((check_cmd(av[2])) == 1)
+	if ((check_path(av[2], env)) == 1)
 		cmd1(av, end, env);
 	exit(1);
 }
 
 void	second_process(char **av, int *end, char **env)
 {
-	if ((check_cmd(av[3])) == 1)
+	if ((check_path(av[3], env)) == 1)
 		cmd2(av, end, env);
 	exit(1);
 }

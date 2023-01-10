@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 06:45:08 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 08:15:23 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ char	*find_path(char *cmd, char **envp)
 		free(paths);
 		write(2, "command not found\n", 19);
 	}
-	else
-		write(2, "No such file or directory\n", 26);
 	return (0);
 }
 

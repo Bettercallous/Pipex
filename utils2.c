@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 06:45:42 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 06:45:57 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 08:21:17 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,25 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-int	check_cmd(char *av)
+int	check_path(char *av, char **envp)
 {
-	if (*av <= 32)
+	int i;
+
+	i = 0;
+	while (ft_strnstr(envp[i], "PATH") == 0)
+		i++;
+	if (!envp[i])
 	{
-		write(2, "command not found\n", 19);
+		write(2, "No such file or directory\n", 26);
 		return (0);
+	}
+	else
+	{
+		if (*av <= 32)
+		{
+			write(2, "command not found\n", 19);
+			return (0);
+		}
 	}
 	return (1);
 }

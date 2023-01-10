@@ -6,12 +6,12 @@
 #    By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 05:51:20 by oubelhaj          #+#    #+#              #
-#    Updated: 2023/01/10 05:00:11 by oubelhaj         ###   ########.fr        #
+#    Updated: 2023/01/10 06:59:40 by oubelhaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCS = main.c utils.c ft_split.c ft_strjoin.c
+SRCS = main.c utils.c ft_split.c ft_strjoin.c utils2.c
 
 NAME = pipex
 
