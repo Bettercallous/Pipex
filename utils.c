@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 08:38:28 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:12:52 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**get_path_env(char **envp)
 	int	i;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH") == 0)
+	while (ft_strstr(envp[i], "PATH") == 0)
 		i++;
 	if (envp[i])
 		return (ft_split(envp[i] + 5, ':'));

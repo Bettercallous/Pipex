@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 06:45:42 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 08:38:09 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:12:24 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_path(char *av, char **envp)
 	int	i;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH") == 0)
+	while (ft_strstr(envp[i], "PATH") == 0)
 		i++;
 	if (!envp[i])
 	{
@@ -59,7 +59,7 @@ void	arg_err(void)
 	exit(1);
 }
 
-int	ft_strnstr(char *haystack, char *needle)
+int	ft_strstr(char *haystack, char *needle)
 {
 	int	i;
 	int	j;
