@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:55 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/09 22:15:49 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 06:43:06 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <sys/types.h>
 
 int		exit_(void);
-void    arg_err(void);
-void	check_cmds(char **av);
+void	arg_err(void);
+int		check_cmd(char *av);
 int		ft_strlen(const char *str);
 void	exec_cmd(char *av, char **env);
 char	**ft_split(char const *s, char c);

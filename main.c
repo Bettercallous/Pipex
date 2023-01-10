@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:10:01 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/09 21:31:05 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 06:42:28 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ void	cmd1(char **av, int *end, char **env)
 	exec_cmd(av[2], env);
 }
 
+void	first_process(char **av, int *end, char **env)
+{
+	if ((check_cmd(av[2])) == 1)
+		cmd1(av, end, env);
+	exit(1);
+}
+
+void	second_process(char **av, int *end, char **env)
+{
+	if ((check_cmd(av[3])) == 1)
+		cmd2(av, end, env);
+	exit(1);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	int		end[2];
@@ -48,19 +62,18 @@ int	main(int ac, char **av, char **env)
 		arg_err();
 	else
 	{
-		check_cmds(av);
 		if (pipe(end) == -1)
 			exit_();
 		pid = fork();
 		if (pid == -1)
 			exit_();
 		if (pid == 0)
-			cmd1(av, end, env);
+			first_process(av, end, env);
 		pid2 = fork();
 		if (pid2 == -1)
 			exit_();
 		if (pid2 == 0)
-			cmd2(av, end, env);
+			second_process(av, end, env);
 		waitpid(-1, NULL, 0);
 	}
 	return (0);

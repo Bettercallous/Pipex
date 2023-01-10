@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:51:27 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/08 13:40:08 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/10 02:12:19 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**new_string;
 
-	if (!s)
+	if (!s || !c)
 		return (0);
 	new_string = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!new_string)
