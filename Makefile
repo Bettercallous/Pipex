@@ -6,7 +6,7 @@
 #    By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 05:51:20 by oubelhaj          #+#    #+#              #
-#    Updated: 2023/01/10 06:59:40 by oubelhaj         ###   ########.fr        #
+#    Updated: 2023/01/12 05:25:07 by oubelhaj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS = ${SRCS:.c=.o}
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 .c.o	:
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)

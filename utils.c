@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 04:09:29 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 09:12:52 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:21:48 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*find_path(char *cmd, char **envp)
 	all_paths = get_path_env(envp);
 	path = search_paths(cmd, all_paths);
 	if (!path)
-		write(2, "command not found\n", 19);
+		write(2, "error: command not found\n", 26);
 	return (path);
 }
 

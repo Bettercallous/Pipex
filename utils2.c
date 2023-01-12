@@ -6,7 +6,7 @@
 /*   By: oubelhaj <oubelhaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 06:45:42 by oubelhaj          #+#    #+#             */
-/*   Updated: 2023/01/10 09:12:24 by oubelhaj         ###   ########.fr       */
+/*   Updated: 2023/01/12 05:21:56 by oubelhaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	check_path(char *av, char **envp)
 		i++;
 	if (!envp[i])
 	{
-		write(2, "No such file or directory\n", 26);
+		write(2, "error: No such file or directory\n", 34);
 		return (0);
 	}
 	else
 	{
 		if (*av <= 32)
 		{
-			write(2, "command not found\n", 19);
+			write(2, "error: command not found\n", 26);
 			return (0);
 		}
 	}
@@ -55,7 +55,7 @@ int	check_path(char *av, char **envp)
 
 void	arg_err(void)
 {
-	write(2, "Error: Wrong arguments\n", 24);
+	write(2, "error: invalid number of arguments\n", 36);
 	exit(1);
 }
 
