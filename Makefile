@@ -28,15 +28,15 @@ all		:	$(NAME)
 
 $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo "\033[1;32m- Pipex program compiled!"
+	@echo "\033[1;32m- Pipex program compiled!\033[0m"
 
 clean	:
 	@rm -rf $(OBJS)
-	@echo "\033[1;31m- Object files removed!"
+	@echo "\033[1;31m- Object files removed!\033[0m"
 
 fclean	:	clean
 	@rm -rf $(NAME)
-	@echo "\033[1;31m- Pipex program removed!"
+	@echo "\033[1;31m- Pipex program removed!\033[0m"
 
 re : fclean all
 
